@@ -96,7 +96,7 @@ export default function CharityDetail() {
           <div className="flex flex-wrap items-center gap-3">
             <h1 className="text-3xl font-bold tracking-tight">{charity.name}</h1>
             {charity.is_featured && (
-              <span className="rounded-full bg-copper/15 px-2.5 py-0.5 text-xs text-copper">Featured</span>
+              <span className="rounded-full bg-gold/15 px-2.5 py-0.5 text-xs gold-ink">Featured</span>
             )}
           </div>
           <p className="mt-4 whitespace-pre-line text-muted-foreground">{charity.description}</p>

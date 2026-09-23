@@ -85,7 +85,7 @@ export default function SubscriptionCard() {
         {!isActiveSubscriber && (
           <div className="mt-4">
             {!hasCharity && (
-              <p className="mb-2 text-sm text-copper">Choose your charity first, then pick a plan.</p>
+              <p className="mb-2 text-sm gold-ink">Choose your charity first, then pick a plan.</p>
             )}
             <div className="flex flex-wrap gap-2">
               <Button size="sm" disabled={busy !== null || !hasCharity} onClick={() => run("monthly")}>

@@ -109,7 +109,7 @@ export default function WinningsCard() {
             <div className="grid gap-4 sm:grid-cols-3">
               <div>
                 <p className="text-xs text-muted-foreground">Total won</p>
-                <p className="font-serif text-4xl text-copper">{formatMoney(totalWon)}</p>
+                <p className="font-serif text-4xl gold-ink">{formatMoney(totalWon)}</p>
               </div>
               <div>
                 <p className="text-xs text-muted-foreground">Paid out</p>

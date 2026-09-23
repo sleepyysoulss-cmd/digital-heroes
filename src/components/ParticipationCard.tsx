@@ -105,7 +105,7 @@ export default function ParticipationCard() {
                     <li key={entry.id} className="py-3 text-sm">
                       <div className="flex flex-wrap items-center justify-between gap-2">
                         <span className="font-medium">{formatMonth(draw.draw_month)}</span>
-                        <span className={entry.match_tier ? "text-copper" : "text-muted-foreground"}>
+                        <span className={entry.match_tier ? "gold-ink" : "text-muted-foreground"}>
                           {entry.match_tier ? TIER_LABEL[entry.match_tier] : "No match"}
                         </span>
                       </div>
@@ -115,7 +115,7 @@ export default function ParticipationCard() {
                             key={n}
                             className={`${chip} ${
                               winning.has(n)
-                                ? "border-copper bg-copper/20 text-copper"
+                                ? "border-gold bg-gold/15 gold-ink"
                                 : "border-border text-muted-foreground"
                             }`}
                           >

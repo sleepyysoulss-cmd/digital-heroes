@@ -268,7 +268,7 @@ export default function CharityManagement() {
             <li key={c.id} className="flex flex-wrap items-center justify-between gap-2 py-2.5 text-sm">
               <span>
                 <span className="font-medium">{c.name}</span>
-                {c.is_featured && <span className="ml-2 text-xs text-copper">Featured</span>}
+                {c.is_featured && <span className="ml-2 text-xs gold-ink">Featured</span>}
                 {!c.is_active && <span className="ml-2 text-xs text-muted-foreground">Hidden</span>}
               </span>
               <span className="flex gap-2">

@@ -184,7 +184,7 @@ export default function WinnersManagement() {
                     {w.verification_status === "approved" && w.payment_status === "pending" && (
                       <Button
                         size="sm"
-                        className="bg-copper text-background hover:bg-copper/90"
+                        className="bg-gold text-ink hover:bg-gold/90"
                         disabled={busy === w.id}
                         onClick={() => update(w.id, { payment_status: "paid", paid_at: new Date().toISOString() })}
                       >

@@ -3,61 +3,53 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* The app always renders in the dark brand theme (<html class="dark">).
-   Palette follows the PRD cover: ink navy, deep teal, sage green, copper. */
-:root {
-  --radius: 0.75rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
-  --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
-  --copper: oklch(0.6 0.11 62);
-  --sage: oklch(0.6 0.09 155);
-}
+/*
+  Digital Heroes — visual language: a running scorecard.
+  Every number the platform shows (a score, a charity %, a prize) behaves like
+  an entry on a shared ledger: precisely aligned, quietly weighted, never
+  decorative. Warmth comes from one crafted hero moment and confident
+  typography, not gradients or a shadow under every card.
+*/
 
-.dark {
-  color-scheme: dark;
-  --background: oklch(0.15 0.022 285);
-  --foreground: oklch(0.955 0.014 85);
-  --card: oklch(0.2 0.03 205);
-  --card-foreground: oklch(0.955 0.014 85);
-  --popover: oklch(0.2 0.03 205);
-  --popover-foreground: oklch(0.955 0.014 85);
-  --primary: oklch(0.76 0.09 155);
-  --primary-foreground: oklch(0.16 0.03 200);
-  --secondary: oklch(0.26 0.03 215);
-  --secondary-foreground: oklch(0.955 0.014 85);
-  --muted: oklch(0.25 0.025 230);
-  --muted-foreground: oklch(0.74 0.02 250);
-  --accent: oklch(0.29 0.04 200);
-  --accent-foreground: oklch(0.955 0.014 85);
-  --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 11%);
-  --input: oklch(1 0 0 / 16%);
-  --ring: oklch(0.76 0.09 155);
-  --copper: oklch(0.72 0.12 62);
-  --sage: oklch(0.76 0.09 155);
+:root {
+  --radius: 0.5rem;
+
+  /* Named palette */
+  --paper: oklch(0.975 0.012 138);   /* pale sage-white background */
+  --ink: oklch(0.22 0.03 155);       /* near-black, cool green undertone */
+  --pine: oklch(0.35 0.09 155);      /* deep forest green — primary */
+  --pine-bright: oklch(0.5 0.11 155);
+  --gold: oklch(0.72 0.15 75);       /* marigold — the one accent, spend it carefully */
+  --stone: oklch(0.52 0.02 150);     /* muted secondary text */
+  --hairline: oklch(0.22 0.03 155 / 13%);
+
+  --background: var(--paper);
+  --foreground: var(--ink);
+  --card: oklch(1 0 0);
+  --card-foreground: var(--ink);
+  --popover: oklch(1 0 0);
+  --popover-foreground: var(--ink);
+  --primary: var(--pine);
+  --primary-foreground: oklch(0.98 0.01 140);
+  --secondary: oklch(0.94 0.015 138);
+  --secondary-foreground: var(--ink);
+  --muted: oklch(0.955 0.012 138);
+  --muted-foreground: var(--stone);
+  --accent: oklch(0.94 0.02 138);
+  --accent-foreground: var(--ink);
+  --destructive: oklch(0.52 0.19 25);
+  --border: var(--hairline);
+  --input: var(--hairline);
+  --ring: var(--pine-bright);
+  --copper: var(--gold);   /* legacy alias, components reference --copper */
+  --sage: var(--pine);     /* legacy alias, components reference --sage */
 }
 
 @theme inline {
-  --radius-sm: calc(var(--radius) - 4px);
-  --radius-md: calc(var(--radius) - 2px);
+  --radius-sm: calc(var(--radius) - 3px);
+  --radius-md: calc(var(--radius) - 1px);
   --radius-lg: var(--radius);
-  --radius-xl: calc(var(--radius) + 4px);
+  --radius-xl: calc(var(--radius) + 3px);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-card: var(--card);
@@ -78,6 +70,11 @@
   --color-ring: var(--ring);
   --color-copper: var(--copper);
   --color-sage: var(--sage);
+  --color-pine: var(--pine);
+  --color-gold: var(--gold);
+  --color-stone: var(--stone);
+  --color-ink: var(--ink);
+  --color-paper: var(--paper);
   --font-sans: "Space Grotesk", ui-sans-serif, system-ui, sans-serif;
   --font-serif: "Instrument Serif", ui-serif, Georgia, serif;
 }
@@ -90,33 +87,37 @@
     @apply bg-background text-foreground font-sans antialiased;
   }
   select option {
-    background-color: oklch(0.2 0.03 205);
-    color: oklch(0.955 0.014 85);
+    background-color: var(--card);
+    color: var(--foreground);
+  }
+  /* Numbers are ledger entries: always align on fixed-width digits. */
+  .tabular {
+    font-variant-numeric: tabular-nums;
   }
 }
 
-/* --- Motion: one orchestrated hero moment + small interaction feedback --- */
-@keyframes orb-drop {
-  0% { opacity: 0; transform: translateY(-28px) scale(0.85); }
-  70% { opacity: 1; transform: translateY(4px) scale(1.02); }
-  100% { opacity: 1; transform: translateY(0) scale(1); }
+/* Hairline rule utility: the structural device that replaces card shadows. */
+.rule-t { border-top: 1px solid var(--hairline); }
+.rule-b { border-bottom: 1px solid var(--hairline); }
+
+/* Simple, specific hover feedback — not a uniform lift-and-glow on everything. */
+.hover-underline {
+  background-image: linear-gradient(var(--pine), var(--pine));
+  background-size: 0% 1px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.3s cubic-bezier(0.2, 0.7, 0.2, 1);
 }
-@keyframes rise {
-  from { opacity: 0; transform: translateY(14px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-@keyframes bar-fill {
-  from { transform: scaleX(0); }
-  to { transform: scaleX(1); }
-}
-.orb-drop { opacity: 0; animation: orb-drop 0.8s cubic-bezier(0.2, 0.8, 0.3, 1) forwards; animation-delay: var(--d, 0ms); }
-.rise { opacity: 0; animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; animation-delay: var(--d, 0ms); }
-.bar-fill { transform-origin: left; animation: bar-fill 1.1s cubic-bezier(0.2, 0.7, 0.2, 1) forwards; animation-delay: var(--d, 0ms); }
-.lift { transition: transform 0.25s ease, border-color 0.25s ease, background-color 0.25s ease; }
-.lift:hover { transform: translateY(-3px); border-color: color-mix(in oklab, var(--sage) 55%, transparent); }
+.hover-underline:hover { background-size: 100% 1px; }
 
 @media (prefers-reduced-motion: reduce) {
-  .orb-drop, .rise, .bar-fill { animation: none; opacity: 1; transform: none; }
-  .lift { transition: none; }
-  .lift:hover { transform: none; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
+
+/* A readable, high-contrast tone of the one accent, for small text on light backgrounds. */
+.gold-ink { color: color-mix(in oklab, var(--gold) 60%, var(--ink)); }

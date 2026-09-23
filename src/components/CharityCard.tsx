@@ -3,7 +3,7 @@ import type { Database } from "@/lib/database.types"
 
 type Charity = Database["public"]["Tables"]["charities"]["Row"]
 
-/** Charity photo, or a soft gradient with the initial when no image is set. */
+/** Charity photo, or a quiet pine-toned initial when no image is set. */
 export function CharityImage({ charity, className = "" }: { charity: Charity; className?: string }) {
   if (charity.image_url) {
     return (
@@ -18,7 +18,7 @@ export function CharityImage({ charity, className = "" }: { charity: Charity; cl
   return (
     <div
       aria-hidden="true"
-      className={`flex items-center justify-center bg-gradient-to-br from-accent via-card to-secondary font-serif text-6xl text-primary/70 ${className}`}
+      className={`flex items-center justify-center bg-secondary font-serif text-6xl italic text-primary/50 ${className}`}
     >
       {charity.name.charAt(0)}
     </div>
@@ -29,14 +29,14 @@ export default function CharityCard({ charity }: { charity: Charity }) {
   return (
     <Link
       to={`/charities/${charity.id}`}
-      className="lift group flex flex-col overflow-hidden rounded-xl border border-border bg-card"
+      className="group flex flex-col overflow-hidden rounded-lg border border-border bg-card transition-colors hover:border-primary/40"
     >
       <CharityImage charity={charity} className="h-40 w-full" />
       <div className="flex flex-1 flex-col gap-2 p-5">
         <div className="flex items-start justify-between gap-2">
-          <h3 className="font-semibold leading-snug">{charity.name}</h3>
+          <h3 className="hover-underline w-fit font-medium leading-snug">{charity.name}</h3>
           {charity.is_featured && (
-            <span className="shrink-0 rounded-full bg-copper/15 px-2 py-0.5 text-xs text-copper">
+            <span className="shrink-0 rounded-full bg-gold/15 px-2 py-0.5 text-xs gold-ink">
               Featured
             </span>
           )}

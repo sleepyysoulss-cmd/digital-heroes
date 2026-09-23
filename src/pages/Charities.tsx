@@ -60,7 +60,7 @@ export default function Charities() {
           aria-pressed={featuredOnly}
           className={`h-10 rounded-md border px-4 text-sm transition-colors ${
             featuredOnly
-              ? "border-copper bg-copper/15 text-copper"
+              ? "border-gold bg-gold/15 gold-ink"
               : "border-border text-muted-foreground hover:text-foreground"
           }`}
         >

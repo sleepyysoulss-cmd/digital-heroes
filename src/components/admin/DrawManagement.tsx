@@ -26,7 +26,7 @@ function Balls({ numbers }: { numbers: number[] | null }) {
       {numbers.map((n) => (
         <span
           key={n}
-          className="flex size-8 items-center justify-center rounded-full border border-copper/60 bg-copper/10 font-serif text-base text-copper"
+          className="flex size-8 items-center justify-center rounded-full border border-gold/60 bg-gold/10 font-serif text-base gold-ink"
         >
           {n}
         </span>
@@ -156,7 +156,7 @@ export default function DrawManagement() {
             {busy === "simulate" ? "Simulating..." : draw ? "Re-run simulation" : "Run simulation"}
           </Button>
           <Button
-            className="bg-copper text-background hover:bg-copper/90"
+            className="bg-gold text-ink hover:bg-gold/90"
             disabled={busy !== null || draw?.status !== "simulated"}
             onClick={handlePublish}
           >
@@ -173,7 +173,7 @@ export default function DrawManagement() {
               <p className="font-medium">{formatMonth(draw.draw_month)}</p>
               <span
                 className={`rounded-full px-2.5 py-0.5 text-xs ${
-                  published ? "bg-primary/15 text-primary" : "bg-copper/15 text-copper"
+                  published ? "bg-primary/15 text-primary" : "bg-gold/15 gold-ink"
                 }`}
               >
                 {published ? "Published" : "Simulated, not published"}
@@ -209,7 +209,7 @@ export default function DrawManagement() {
                 <li>Jackpot carried in from earlier months: {formatMoney(draw.five_match_rollover_in)}.</li>
               )}
               {draw.five_match_rollover_out && (
-                <li className="text-copper">
+                <li className="gold-ink">
                   Nobody matched 5 numbers, so the {formatMoney(pool.five)} jackpot rolls into the next draw.
                 </li>
               )}
